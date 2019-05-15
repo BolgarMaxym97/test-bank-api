@@ -10,7 +10,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CardsController extends Controller
 {
-    public function getForUser(User $user): JsonResponse
+    public function getByUser(User $user): JsonResponse
     {
         return response()->json([
             'cards' => $user->cards
