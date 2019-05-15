@@ -22,5 +22,7 @@ Route::post('/login', 'AuthController@login');
 // with token
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/cards/{user}', 'CardsController@getForUser')->name('user.cards');
-
+    Route::post('/cards', 'CardsController@create')->name('card.create');
+    Route::put('/cards/{card}', 'CardsController@update')->name('card.update');
+    Route::delete('/cards/{card}', 'CardsController@delete')->name('card.delete');
 });

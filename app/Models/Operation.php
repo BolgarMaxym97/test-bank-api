@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Operation
@@ -34,6 +35,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class Operation extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'operations';
     protected $fillable = [
         'user_id', 'card_id', 'operation_type_id', 'amount', 'is_success'
