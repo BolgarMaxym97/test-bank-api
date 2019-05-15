@@ -15,12 +15,29 @@ class User extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name_first' => ['required'],
-            'name_last' => ['required'],
-            'phone' => ['required', 'numeric'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $this->id],
-            'password' => ['sometimes', 'min:6', 'confirmed']
-        ];
+        switch ($this->method()) {
+            case 'POST':
+                {
+                    return [
+                        'name_first' => ['required'],
+                        'name_last' => ['required'],
+                        'phone' => ['required', 'numeric'],
+                        'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $this->id],
+                        'password' => ['required', 'min:6', 'confirmed']
+                    ];
+                }
+            case 'PUT':
+                {
+                    return [
+                        'name_first' => ['required'],
+                        'name_last' => ['required'],
+                        'phone' => ['required', 'numeric'],
+                        'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $this->id],
+                        'password' => ['sometimes', 'min:6', 'confirmed']
+                    ];
+                }
+            default:
+                return [];
+        }
     }
 }
