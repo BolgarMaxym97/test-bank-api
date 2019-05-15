@@ -20,6 +20,7 @@ Route::post('/register', 'AuthController@create');
 Route::post('/login', 'AuthController@login');
 
 // with token
-Route::group([], function () {
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::get('/cards/{user}', 'CardsController@getForUser')->name('user.cards');
 
 });

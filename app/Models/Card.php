@@ -34,10 +34,10 @@ class Card extends Model
 {
     protected $table = 'cards';
     protected $fillable = [
-        'user_id', 'amount'
+        'user_id', 'amount', 'number'
     ];
     protected $hidden = [
-        'pin', 'number',
+        'pin',
     ];
 
     public function user(): HasOne
