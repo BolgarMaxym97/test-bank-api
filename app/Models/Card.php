@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Generators;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -44,11 +45,10 @@ class Card extends Model
 
     protected $table = 'cards';
     protected $fillable = [
-        'user_id', 'amount', 'number'
+        'user_id', 'amount', 'number', 'pin'
     ];
-    protected $hidden = [
-        'pin',
-    ];
+
+    const NUMBER_LENGTH = 16;
 
     public function user(): HasOne
     {
@@ -60,8 +60,19 @@ class Card extends Model
         return $this->hasMany(Operation::class, 'card_id', 'id');
     }
 
-    public function setPinAttribute($password): void
+    public function setPinAttribute($pin): void
     {
-        $this->attributes['pin'] = bcrypt($password);
+        $this->attributes['pin'] = bcrypt($pin);
+    }
+
+    public function setNumberAttribute(): void
+    {
+        $this->attributes['number'] = Generators::creditCardNumber();
+    }
+
+    public function setUserIdAttribute(): void
+    {
+        $user = \Auth::user();
+        $this->attributes['user_id'] = $user->id;
     }
 }

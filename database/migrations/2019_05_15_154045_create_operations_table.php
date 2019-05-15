@@ -18,7 +18,7 @@ class CreateOperationsTable extends Migration
             $table->integer('user_id');
             $table->integer('card_id');
             $table->integer('operation_type_id');
-            $table->float('amount');
+            $table->float('amount')->default(0);
             $table->boolean('is_success');
             $table->timestamps();
         });

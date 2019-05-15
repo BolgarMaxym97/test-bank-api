@@ -18,7 +18,7 @@ class CreateCardsTable extends Migration
             $table->bigInteger('number');
             $table->integer('user_id');
             $table->string('pin');
-            $table->float('amount');
+            $table->float('amount')->default(0);
             $table->timestamps();
         });
     }

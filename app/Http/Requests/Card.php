@@ -15,27 +15,10 @@ class Card extends FormRequest
      */
     public function rules(): ?array
     {
-        switch ($this->method()) {
-            case 'POST':
-                {
-                    return [
-                        'number' => ['required', 'numeric'],
-                        'user_id' => ['required'],
-                        'pin' => ['required'],
-                        'amount' => ['required', 'numeric'],
-                    ];
-                }
-            case 'PUT':
-                {
-                    return [
-                        'number' => ['sometimes', 'numeric'],
-                        'user_id' => ['sometimes'],
-                        'pin' => ['sometimes'],
-                        'amount' => ['required', 'numeric'],
-                    ];
-                }
-            default:
-                return [];
-        }
+        return [
+            'number' => ['sometimes'],
+            'user_id' => ['sometimes'],
+            'pin' => ['required', 'digits:4', 'confirmed'],
+        ];
     }
 }
