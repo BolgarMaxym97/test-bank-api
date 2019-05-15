@@ -19,7 +19,6 @@ class User extends FormRequest
             'name_first' => ['required'],
             'name_last' => ['required'],
             'phone' => ['required', 'numeric'],
-            'address' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $this->id],
             'password' => ['sometimes', 'min:6', 'confirmed']
         ];

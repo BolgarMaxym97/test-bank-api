@@ -15,8 +15,10 @@ DEPLOYMENT
     cp .env.example .env
     ~~~
 4. Generate application key. Key will be stored into `APP_KEY` param of `.env` file  
+    Generate personal token
     ~~~
     php artisan key:generate
+    php artisan passport:client --personal
     ~~~
 5. Set database settings into `.env` file
 6. ***For production:*** set `APP_ENV` property value to `production` and `APP_DEBUG` to `false` in `.env` file to avoid displaying server errors with stacktrace to users
