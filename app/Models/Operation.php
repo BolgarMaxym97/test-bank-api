@@ -32,6 +32,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Operation whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Operation whereUserId($value)
  * @mixin \Eloquent
+ * @property string|null $deleted_at
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Operation onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Operation whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Operation withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Operation withoutTrashed()
  */
 class Operation extends Model
 {

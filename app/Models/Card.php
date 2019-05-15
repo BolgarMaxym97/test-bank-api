@@ -30,6 +30,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Card whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Card whereUserId($value)
  * @mixin \Eloquent
+ * @property string|null $deleted_at
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Card onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Card whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Card withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Card withoutTrashed()
  */
 class Card extends Model
 {

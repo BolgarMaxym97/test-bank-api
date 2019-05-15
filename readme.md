@@ -18,13 +18,13 @@ DEPLOYMENT
     Generate personal token
     ~~~
     php artisan key:generate
-    php artisan passport:client --personal
     ~~~
 5. Set database settings into `.env` file
 6. ***For production:*** set `APP_ENV` property value to `production` and `APP_DEBUG` to `false` in `.env` file to avoid displaying server errors with stacktrace to users
 7. Run migrations 
     ~~~
-    php artisan migrate
+    php artisan migrate --seed
+    php artisan passport:client --personal
     ~~~
     8. Generate OAuth private/public keys into `/storage` folder
     ~~~

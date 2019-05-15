@@ -22,7 +22,7 @@ class User extends FormRequest
                         'name_first' => ['required'],
                         'name_last' => ['required'],
                         'phone' => ['required', 'numeric'],
-                        'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $this->id],
+                        'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
                         'password' => ['required', 'min:6', 'confirmed']
                     ];
                 }
@@ -32,7 +32,7 @@ class User extends FormRequest
                         'name_first' => ['required'],
                         'name_last' => ['required'],
                         'phone' => ['required', 'numeric'],
-                        'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $this->id],
+                        'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
                         'password' => ['sometimes', 'min:6', 'confirmed']
                     ];
                 }
