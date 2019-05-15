@@ -49,4 +49,9 @@ class Card extends Model
     {
         return $this->hasMany(Operation::class, 'card_id', 'id');
     }
+
+    public function setPinAttribute($password): void
+    {
+        $this->attributes['pin'] = bcrypt($password);
+    }
 }

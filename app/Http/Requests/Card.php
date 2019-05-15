@@ -13,7 +13,7 @@ class Card extends FormRequest
      * @param $id
      * @return array
      */
-    public function rules()
+    public function rules(): ?array
     {
         switch ($this->method()) {
             case 'POST':
