@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -64,6 +65,10 @@ use Laravel\Passport\HasApiTokens;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereDeletedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User withoutTrashed()
+ * @property string $username
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Card[] $cards
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Operation[] $operations
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\User whereUsername($value)
  */
 class User extends Authenticatable
 {
@@ -77,7 +82,17 @@ class User extends Authenticatable
     ];
     protected $appends = ['full_name'];
 
-    public function setPasswordAttribute($password)
+    public function cards(): HasMany
+    {
+        return $this->hasMany(Card::class, 'user_id', 'id');
+    }
+
+    public function operations(): HasMany
+    {
+        return $this->hasMany(Operation::class, 'user_id', 'id');
+    }
+
+    public function setPasswordAttribute($password): void
     {
         $this->attributes['password'] = bcrypt($password);
     }
