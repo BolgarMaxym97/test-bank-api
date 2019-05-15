@@ -48,7 +48,7 @@ class Handler extends ExceptionHandler
     public function render($request, Exception $exception)
     {
         if ($exception instanceof ValidationException) {
-            return response()->json(['message' => 'Указаны неверные данные', 'errors' => $exception->validator->getMessageBag()], 422);
+            return response()->json(['message' => 'Wrong request', 'errors' => $exception->validator->getMessageBag()], 422);
         }
         return parent::render($request, $exception);
     }
