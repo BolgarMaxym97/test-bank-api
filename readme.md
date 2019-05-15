@@ -3,8 +3,8 @@ DEPLOYMENT
 
 1. Clone this repo and navigate to just created folder
     ~~~
-    git clone git@github.com:WaitesWireless/sso-server.git
-    cd sso-server
+    git clone git@github.com:BolgarMaxym97/test-bank-api.git
+    cd test-bank-api
     ~~~
 2. Install dependencies with [composer](https://getcomposer.org/)
     ~~~
@@ -24,11 +24,7 @@ DEPLOYMENT
     ~~~
     php artisan migrate
     ~~~
-8. Seed the database with initial data
-    ~~~
-    php artisan db:seed
-    ~~~
-    9. Generate OAuth private/public keys into `/storage` folder
+    8. Generate OAuth private/public keys into `/storage` folder
     ~~~
     php artisan passport:keys
     ~~~
@@ -39,6 +35,5 @@ DEPLOYMENT
     ~~~
 
    Documentation:
-    ~~~
-    https://app.swaggerhub.com/apis-docs/BolgarMax/sp-api/1.0.0-oas3
+    ---
     ~~~
