@@ -46,7 +46,7 @@ class Operation extends Model
 
     protected $table = 'operations';
     protected $fillable = [
-        'user_id', 'card_id', 'operation_type_id', 'amount', 'is_success'
+        'user_id', 'card_id', 'operation_type_id', 'amount', 'is_success', 'additional_info'
     ];
     protected $casts = [
         'is_success' => 'boolean',
