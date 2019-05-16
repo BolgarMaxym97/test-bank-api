@@ -98,6 +98,7 @@ class Card extends Model
             case OperationType::TYPE_REPLENISHMENT:
                 return $this->doReplenishment($data);
             case OperationType::TYPE_TRANSFER:
+                $data['card_number'] = str_replace(' ', '', $data['card_number']);
                 return $this->doTransfer($data);
             default:
                 return false;
