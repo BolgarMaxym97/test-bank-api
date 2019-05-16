@@ -24,9 +24,20 @@ class OperationsController extends Controller
         ]);
     }
 
-    public function create(Operation $request): Model
+    public function create(Operation $request): JsonResponse
     {
-        return \App\Models\Operation::create($request->validated());
+        $card = Card::find($request->card_id);
+        if (!$card) {
+            return response()->json(['message' => 'Card not found.'], 404);
+        }
+        if (\Hash::check($request->pin, $card->pin)) {
+            $saved = $card->doOperation($request);
+            (new \App\Models\Operation())->saveOperation($request, $saved);
+            return response()->json([
+                'success' => $saved
+            ], 201);
+        }
+        return response()->json(['message' => 'Wrong pin code'], 400);
     }
 
     public function update(Operation $request, \App\Models\Operation $card): bool

@@ -19,20 +19,21 @@ class Operation extends FormRequest
             case 'POST':
                 {
                     return [
-                        'user_id' => ['required'],
                         'card_id' => ['required'],
+                        'pin' => ['required', 'digits:4'],
                         'operation_type_id' => ['required'],
-                        'is_success' => ['required', 'boolean'],
                         'additional_info' => ['sometimes', 'string', 'max:255'],
-                        'amount' => ['required', 'numeric'],
+                        'card_number' => ['sometimes'],
+                        'amount' => ['required', 'numeric', 'min:0'],
                     ];
                 }
             case 'PUT':
                 {
                     return [
                         'operation_type_id' => ['required'],
-                        'is_success' => ['required', 'boolean'],
+                        'pin' => ['required', 'digits:4'],
                         'amount' => ['required', 'numeric'],
+                        'card_number' => ['sometimes'],
                         'additional_info' => ['sometimes', 'string', 'max:255'],
                     ];
                 }

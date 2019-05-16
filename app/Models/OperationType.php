@@ -23,4 +23,8 @@ class OperationType extends Model
         'type_name'
     ];
     public $timestamps = false;
+
+    public const TYPE_WITHDRAWAL = 1;
+    public const TYPE_REPLENISHMENT = 2;
+    public const TYPE_TRANSFER = 3;
 }

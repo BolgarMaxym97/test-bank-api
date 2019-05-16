@@ -66,4 +66,19 @@ class Operation extends Model
     {
         return $this->hasOne(OperationType::class, 'id', 'operation_type_id');
     }
+
+    public function saveOperation($data, $isSuccess): bool
+    {
+        $card = Card::find($data['card_id']);
+        if (!$card) {
+            return false;
+        }
+        $this->user_id = $card->user_id;
+        $this->card_id = $card->id;
+        $this->operation_type_id = $data['operation_type_id'];
+        $this->amount = $data['amount'];
+        $this->is_success = $isSuccess;
+        $this->additional_info = $data['card_number'] ?? null;
+        return $this->save();
+    }
 }
