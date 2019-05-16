@@ -13,7 +13,7 @@ class CardsController extends Controller
     public function getByUser(User $user): JsonResponse
     {
         return response()->json([
-            'cards' => $user->cards()->orderBy('created_at')->get()
+            'cards' => $user->cards()->with('operations.operationType')->orderBy('created_at')->get()
         ]);
     }
 

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Operation;
 use App\Models\Card;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 
 class OperationsController extends Controller
@@ -13,14 +12,14 @@ class OperationsController extends Controller
     public function getByUser(User $user): JsonResponse
     {
         return response()->json([
-            'operations' => $user->operations
+            'operations' => $user->operations()->orderBy('created_at', 'desc')->get()
         ]);
     }
 
     public function getByCard(Card $card): JsonResponse
     {
         return response()->json([
-            'operations' => $card->operations
+            'operations' => $card->operations()->orderBy('created_at', 'desc')->get()
         ]);
     }
 

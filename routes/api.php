@@ -26,8 +26,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::put('/cards/{card}', 'CardsController@update')->name('card.update');
     Route::delete('/cards/{card}', 'CardsController@delete')->name('card.delete');
 
-    Route::get('/operations/{user}', 'OperationsController@getByUser')->name('user.operations');
-    Route::get('/operations/{card}', 'OperationsController@getByCard')->name('card.operations');
+    Route::get('/operations/user/{user}', 'OperationsController@getByUser')->name('user.operations');
+    Route::get('/operations/card/{card}', 'OperationsController@getByCard')->name('card.operations');
     Route::post('/operations', 'OperationsController@create')->name('operation.create');
     Route::put('/operations/{card}', 'OperationsController@update')->name('operation.update');
     Route::delete('/operations/{card}', 'OperationsController@delete')->name('operation.delete');

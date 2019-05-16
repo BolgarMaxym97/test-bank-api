@@ -51,6 +51,7 @@ class Operation extends Model
     protected $casts = [
         'is_success' => 'boolean',
     ];
+    protected $appends = ['type_name'];
 
     public function user(): HasOne
     {
@@ -65,6 +66,11 @@ class Operation extends Model
     public function operationType(): HasOne
     {
         return $this->hasOne(OperationType::class, 'id', 'operation_type_id');
+    }
+
+    public function getTypeNameAttribute(): string
+    {
+        return $this->operationType->type_name;
     }
 
     public function saveOperation($data, $isSuccess): bool
