@@ -63,7 +63,7 @@ class Card extends Model
 
     public function operations(): HasMany
     {
-        return $this->hasMany(Operation::class, 'card_id', 'id');
+        return $this->hasMany(Operation::class, 'card_id', 'id')->orderBy('created_at', 'desc');
     }
 
     public function setPinAttribute($pin): void
