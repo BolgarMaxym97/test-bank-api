@@ -19,7 +19,7 @@ class CardsController extends Controller
 
     public function create(Card $request): Model
     {
-        return \App\Models\Card::create($request->validated());
+        return \App\Models\Card::create($request->validated())->fresh();
     }
 
     public function update(Card $request, \App\Models\Card $card): bool

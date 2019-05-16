@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Helpers\Generators;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -45,7 +46,11 @@ class Card extends Model
 
     protected $table = 'cards';
     protected $fillable = [
-        'user_id', 'amount', 'number', 'pin'
+        'user_id', 'amount', 'number', 'pin', 'expired_at'
+    ];
+
+    protected $casts = [
+        'expired_at' => 'datetime:m/Y',
     ];
 
     const NUMBER_LENGTH = 16;
@@ -67,12 +72,20 @@ class Card extends Model
 
     public function setNumberAttribute(): void
     {
-        $this->attributes['number'] = Generators::creditCardNumber();
+        do {
+            $generatedNumber = Generators::creditCardNumber();
+        } while (Card::where('number', $generatedNumber)->get()->isNotEmpty());
+        $this->attributes['number'] = $generatedNumber;
     }
 
     public function setUserIdAttribute(): void
     {
         $user = \Auth::user();
         $this->attributes['user_id'] = $user->id;
+    }
+
+    public function setExpiredAtAttribute(): void
+    {
+        $this->attributes['expired_at'] = Carbon::now()->addYears(3);
     }
 }
