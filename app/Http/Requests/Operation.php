@@ -23,6 +23,7 @@ class Operation extends FormRequest
                         'card_id' => ['required'],
                         'operation_type_id' => ['required'],
                         'is_success' => ['required', 'boolean'],
+                        'additional_info' => ['sometimes', 'string', 'max:255'],
                         'amount' => ['required', 'numeric'],
                     ];
                 }
@@ -32,6 +33,7 @@ class Operation extends FormRequest
                         'operation_type_id' => ['required'],
                         'is_success' => ['required', 'boolean'],
                         'amount' => ['required', 'numeric'],
+                        'additional_info' => ['sometimes', 'string', 'max:255'],
                     ];
                 }
             default:
