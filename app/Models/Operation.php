@@ -70,7 +70,7 @@ class Operation extends Model
 
     public function getTypeNameAttribute(): string
     {
-        return $this->operationType->type_name;
+        return $this->operationType ? $this->operationType->type_name : '---';
     }
 
     public function saveOperation($data, $isSuccess): bool
